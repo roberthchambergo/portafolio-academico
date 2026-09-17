@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <title>Base de Datos II | Roberth</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #080808;
+            color: white;
+        }
+
+        header {
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #333;
+        }
+
+        .titulo {
+            font-size: 28px;
+            color: #b74b4b;
+            font-weight: bold;
+        }
+
+        .volver {
+            text-decoration: none;
+            color: white;
+            background: #b74b4b;
+            padding: 10px 20px;
+            border-radius: 20px;
+        }
+
+        .volver:hover {
+            background: white;
+            color: #b74b4b;
+        }
+
+        .contenido {
+            width: 90%;
+            max-width: 1200px;
+            margin: 50px auto;
+        }
+
+        .titulo-principal {
+            text-align: center;
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .titulo-principal span {
+            color: #b74b4b;
+        }
+
+        .descripcion {
+            text-align: center;
+            color: #ccc;
+            margin-bottom: 50px;
+        }
+
+        .unidades {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .unidad {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: .3s;
+        }
+
+        .unidad:hover {
+            transform: translateY(-8px);
+            border-color: #b74b4b;
+            box-shadow: 0 0 20px rgba(183,75,75,.3);
+        }
+
+        .unidad i {
+            font-size: 45px;
+            color: #b74b4b;
+            margin-bottom: 15px;
+        }
+
+        .unidad h2 {
+            margin-bottom: 20px;
+        }
+
+        .subir {
+            display: inline-block;
+            background: #b74b4b;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .subir:hover {
+            background: white;
+            color: #b74b4b;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .archivo {
+            margin-top: 15px;
+            color: #aaa;
+            font-size: 13px;
+            word-break: break-word;
+        }
+
+        .archivo-item {
+            background: #1c1c1c;
+            border: 1px solid #333;
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .archivo-nombre {
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .archivo-nombre i {
+            font-size: 16px;
+            margin-right: 6px;
+        }
+
+        .boton-abrir {
+            background: #b74b4b;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .boton-eliminar {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        .boton-abrir:hover {
+            background: white;
+            color: #b74b4b;
+        }
+
+        .boton-eliminar:hover {
+            background: #b74b4b;
+        }
+
+        @media(max-width: 900px) {
+            .unidades {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width: 600px) {
+            .unidades {
+                grid-template-columns: 1fr;
+            }
+
+            .titulo-principal {
+                font-size: 35px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="titulo">
+        Base de Datos II
+    </div>
+
+    <a href="index.html" class="volver">
+        <i class="fa-solid fa-arrow-left"></i>
+        Volver
+    </a>
+
+</header>
+
+
+<div class="contenido">
+
+    <h1 class="titulo-principal">
+        Base de Datos <span>II</span>
+    </h1>
+
+    <p class="descripcion">
+        Material académico organizado por unidades.
+    </p>
+
+
+    <div class="unidades">
+
+
+        <!-- UNIDAD 1 -->
+
+        <div class="unidad" data-unidad="1">
+
+            <i class="fa-solid fa-folder"></i>
+
+            <h2>Unidad 1</h2>
+
+            <label class="subir">
+                <i class="fa-solid fa-upload"></i>
+                Subir archivo
+
+                <input type="file" class="input-archivo" multiple>
+
+            </label>
+
+            <div class="archivo">
+                Ningún archivo seleccionado
+            </div>
+
+        </div>
+
+
+        <!-- UNIDAD 2 -->
+
+        <div class="unidad" data-unidad="2">
+
+            <i class="fa-solid fa-folder"></i>
+
+            <h2>Unidad 2</h2>
+
+            <label class="subir">
+                <i class="fa-solid fa-upload"></i>
+                Subir archivo
+
+                <input type="file" class="input-archivo" multiple>
+
+            </label>
+
+            <div class="archivo">
+                Ningún archivo seleccionado
+            </div>
+
+        </div>
+
+
+        <!-- UNIDAD 3 -->
+
+        <div class="unidad" data-unidad="3">
+
+            <i class="fa-solid fa-folder"></i>
+
+            <h2>Unidad 3</h2>
+
+            <label class="subir">
+                <i class="fa-solid fa-upload"></i>
+                Subir archivo
+
+                <input type="file" class="input-archivo" multiple>
+
+            </label>
+
+            <div class="archivo">
+                Ningún archivo seleccionado
+            </div>
+
+        </div>
+
+
+        <!-- UNIDAD 4 -->
+
+        <div class="unidad" data-unidad="4">
+
+            <i class="fa-solid fa-folder"></i>
+
+            <h2>Unidad 4</h2>
+
+            <label class="subir">
+                <i class="fa-solid fa-upload"></i>
+                Subir archivo
+
+                <input type="file" class="input-archivo" multiple>
+
+            </label>
+
+            <div class="archivo">
+                Ningún archivo seleccionado
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+const DB_NAME = "Roberth_Portafolio_Archivos";
+const DB_VERSION = 1;
+const STORE_NAME = "archivos";
+
+
+/* =========================
+   ABRIR BASE DE DATOS
+========================= */
+
+function abrirBD() {
+
+    return new Promise(function(resolve, reject) {
+
+        const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+        request.onupgradeneeded = function(event) {
+
+            const db = event.target.result;
+
+            if (!db.objectStoreNames.contains(STORE_NAME)) {
+
+                db.createObjectStore(STORE_NAME, {
+                    keyPath: "id",
+                    autoIncrement: true
+                });
+
+            }
+
+        };
+
+
+        request.onsuccess = function(event) {
+
+            resolve(event.target.result);
+
+        };
+
+
+        request.onerror = function(event) {
+
+            console.error(
+                "Error IndexedDB:",
+                event.target.error
+            );
+
+            reject(event.target.error);
+
+        };
+
+    });
+
+}
+
+
+/* =========================
+   GUARDAR ARCHIVO
+========================= */
+
+function guardarArchivo(db, archivo, unidad) {
+
+    return new Promise(function(resolve, reject) {
+
+        const transaction =
+            db.transaction(STORE_NAME, "readwrite");
+
+        const store =
+            transaction.objectStore(STORE_NAME);
+
+
+        const datos = {
+
+            nombre: archivo.name,
+
+            tipo: archivo.type,
+
+            tamaño: archivo.size,
+
+            unidad: unidad,
+
+            archivo: archivo,
+
+            fecha: new Date().getTime()
+
+        };
+
+
+        const request = store.add(datos);
+
+
+        request.onsuccess = function() {
+
+            resolve();
+
+        };
+
+
+        request.onerror = function(event) {
+
+            console.error(
+                "Error guardando:",
+                event.target.error
+            );
+
+            reject(event.target.error);
+
+        };
+
+    });
+
+}
+
+
+/* =========================
+   OBTENER TODOS LOS ARCHIVOS
+========================= */
+
+function obtenerArchivos(db, unidad) {
+
+    return new Promise(function(resolve, reject) {
+
+        const transaction =
+            db.transaction(STORE_NAME, "readonly");
+
+        const store =
+            transaction.objectStore(STORE_NAME);
+
+
+        const request = store.getAll();
+
+
+        request.onsuccess = function() {
+
+            const archivos =
+                request.result.filter(function(item) {
+
+                    return item.unidad === unidad;
+
+                });
+
+
+            resolve(archivos);
+
+        };
+
+
+        request.onerror = function(event) {
+
+            reject(event.target.error);
+
+        };
+
+    });
+
+}
+
+
+/* =========================
+   ELIMINAR ARCHIVO
+========================= */
+
+function eliminarArchivo(db, id) {
+
+    return new Promise(function(resolve, reject) {
+
+        const transaction =
+            db.transaction(STORE_NAME, "readwrite");
+
+        const store =
+            transaction.objectStore(STORE_NAME);
+
+
+        const request = store.delete(id);
+
+
+        request.onsuccess = function() {
+
+            resolve();
+
+        };
+
+
+        request.onerror = function(event) {
+
+            reject(event.target.error);
+
+        };
+
+    });
+
+}
+
+
+/* =========================
+   MOSTRAR ARCHIVOS
+========================= */
+
+function mostrarArchivos(db, unidad, contenedor) {
+
+    obtenerArchivos(db, unidad)
+
+        .then(function(archivos) {
+
+            contenedor.innerHTML = "";
+
+
+            if (archivos.length === 0) {
+
+                contenedor.textContent =
+                    "Ningún archivo seleccionado";
+
+                return;
+
+            }
+
+
+            archivos.forEach(function(item) {
+
+
+                const caja =
+                    document.createElement("div");
+
+                caja.className = "archivo-item";
+
+
+                const nombre =
+                    document.createElement("div");
+
+                nombre.className = "archivo-nombre";
+
+
+                const icono =
+                    document.createElement("i");
+
+                icono.className =
+                    "fa-solid fa-file";
+
+
+                const texto =
+                    document.createElement("span");
+
+                texto.textContent =
+                    item.nombre;
+
+
+                nombre.appendChild(icono);
+
+                nombre.appendChild(texto);
+
+
+                /* ABRIR */
+
+                const abrir =
+                    document.createElement("button");
+
+                abrir.className =
+                    "boton-abrir";
+
+                abrir.textContent =
+                    "Abrir";
+
+
+                abrir.onclick = function() {
+
+                    const blob =
+                        new Blob(
+                            [item.archivo],
+                            {
+                                type: item.tipo
+                            }
+                        );
+
+
+                    const url =
+                        URL.createObjectURL(blob);
+
+
+                    window.open(
+                        url,
+                        "_blank"
+                    );
+
+                };
+
+
+                /* ELIMINAR */
+
+                const eliminar =
+                    document.createElement("button");
+
+                eliminar.className =
+                    "boton-eliminar";
+
+                eliminar.textContent =
+                    "Eliminar";
+
+
+                eliminar.onclick = function() {
+
+                    if (
+                        !confirm(
+                            "¿Quieres eliminar este archivo?"
+                        )
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    eliminarArchivo(
+                        db,
+                        item.id
+                    )
+                    .then(function() {
+
+                        mostrarArchivos(
+                            db,
+                            unidad,
+                            contenedor
+                        );
+
+                    });
+
+                };
+
+
+                caja.appendChild(nombre);
+
+                caja.appendChild(abrir);
+
+                caja.appendChild(eliminar);
+
+                contenedor.appendChild(caja);
+
+            });
+
+        });
+
+}
+
+
+/* =========================
+   INICIAR
+========================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        abrirBD()
+
+        .then(function(db) {
+
+
+            const unidades =
+                document.querySelectorAll(
+                    ".unidad"
+                );
+
+
+            unidades.forEach(
+                function(unidad) {
+
+
+                    const numero =
+                        unidad.getAttribute(
+                            "data-unidad"
+                        );
+
+
+                    const input =
+                        unidad.querySelector(
+                            ".input-archivo"
+                        );
+
+
+                    const contenedor =
+                        unidad.querySelector(
+                            ".archivo"
+                        );
+
+
+                    /* MOSTRAR LOS YA GUARDADOS */
+
+                    mostrarArchivos(
+                        db,
+                        numero,
+                        contenedor
+                    );
+
+
+                    /* SUBIR ARCHIVOS */
+
+                    input.addEventListener(
+                        "change",
+                        function() {
+
+
+                            const archivos =
+                                Array.from(
+                                    input.files
+                                );
+
+
+                            if (
+                                archivos.length === 0
+                            ) {
+
+                                return;
+
+                            }
+
+
+                            let guardados = 0;
+
+
+                            archivos.forEach(
+                                function(archivo) {
+
+
+                                    guardarArchivo(
+                                        db,
+                                        archivo,
+                                        numero
+                                    )
+
+                                    .then(function() {
+
+                                        guardados++;
+
+
+                                        if (
+                                            guardados ===
+                                            archivos.length
+                                        ) {
+
+
+                                            input.value =
+                                                "";
+
+
+                                            mostrarArchivos(
+                                                db,
+                                                numero,
+                                                contenedor
+                                            );
+
+
+                                            alert(
+                                                "Archivo guardado correctamente."
+                                            );
+
+                                        }
+
+                                    })
+
+                                    .catch(
+                                        function(error) {
+
+                                            console.error(
+                                                error
+                                            );
+
+
+                                            alert(
+                                                "No se pudo guardar el archivo."
+                                            );
+
+                                        }
+                                    );
+
+                                }
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+        })
+
+        .catch(function(error) {
+
+            console.error(error);
+
+            alert(
+                "El navegador no pudo iniciar el almacenamiento."
+            );
+
+        });
+
+    }
+);
+
+</script>
+
+</body>
+</html>
