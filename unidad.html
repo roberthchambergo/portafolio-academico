@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<title>Unidad | Algoritmos y Estructuras de Datos</title>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        background: #080808;
+        color: white;
+    }
+
+    header {
+        width: 100%;
+        padding: 20px 8%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #333;
+    }
+
+    .titulo {
+        font-size: 25px;
+        color: #b74b4b;
+        font-weight: bold;
+    }
+
+    .volver {
+        text-decoration: none;
+        color: white;
+        background: #b74b4b;
+        padding: 10px 20px;
+        border-radius: 20px;
+        transition: .3s;
+    }
+
+    .volver:hover {
+        background: white;
+        color: #b74b4b;
+    }
+
+    .contenido {
+        width: 90%;
+        max-width: 1200px;
+        margin: 50px auto;
+    }
+
+    .titulo-principal {
+        text-align: center;
+        font-size: 45px;
+        margin-bottom: 15px;
+    }
+
+    .titulo-principal span {
+        color: #b74b4b;
+    }
+
+    .descripcion {
+        text-align: center;
+        color: #ccc;
+        margin-bottom: 50px;
+    }
+
+    .semanas {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+    }
+
+    .semana {
+        background: #111;
+        border: 1px solid #333;
+        border-radius: 20px;
+        padding: 40px 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: .3s;
+    }
+
+    .semana:hover {
+        transform: translateY(-8px);
+        border-color: #b74b4b;
+        box-shadow: 0 0 20px rgba(183, 75, 75, .3);
+    }
+
+    .semana i {
+        font-size: 60px;
+        color: #b74b4b;
+        margin-bottom: 20px;
+    }
+
+    .semana h2 {
+        margin-bottom: 10px;
+    }
+
+    .semana p {
+        color: #aaa;
+        font-size: 14px;
+    }
+
+    @media(max-width: 900px) {
+
+        .semanas {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+    }
+
+    @media(max-width: 600px) {
+
+        .semanas {
+            grid-template-columns: 1fr;
+        }
+
+        .titulo-principal {
+            font-size: 35px;
+        }
+
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+<header>
+
+
+<div class="titulo">
+    Algoritmos y Estructuras de Datos
+</div>
+
+<a href="algoritmos.html" class="volver">
+
+    <i class="fa-solid fa-arrow-left"></i>
+
+    Volver
+
+</a>
+
+
+</header>
+
+<div class="contenido">
+
+
+<h1 class="titulo-principal">
+
+    Unidad <span id="numeroUnidad"></span>
+
+</h1>
+
+
+<p class="descripcion">
+
+    Selecciona una semana para ver y subir tus materiales.
+
+</p>
+
+
+<div class="semanas">
+
+
+    <!-- SEMANA 1 -->
+
+    <div class="semana"
+        onclick="abrirSemana(1)">
+
+        <i class="fa-solid fa-folder"></i>
+
+        <h2>Semana 1</h2>
+
+        <p>Material de la semana 1</p>
+
+    </div>
+
+
+    <!-- SEMANA 2 -->
+
+    <div class="semana"
+        onclick="abrirSemana(2)">
+
+        <i class="fa-solid fa-folder"></i>
+
+        <h2>Semana 2</h2>
+
+        <p>Material de la semana 2</p>
+
+    </div>
+
+
+    <!-- SEMANA 3 -->
+
+    <div class="semana"
+        onclick="abrirSemana(3)">
+
+        <i class="fa-solid fa-folder"></i>
+
+        <h2>Semana 3</h2>
+
+        <p>Material de la semana 3</p>
+
+    </div>
+
+
+    <!-- SEMANA 4 -->
+
+    <div class="semana"
+        onclick="abrirSemana(4)">
+
+        <i class="fa-solid fa-folder"></i>
+
+        <h2>Semana 4</h2>
+
+        <p>Material de la semana 4</p>
+
+    </div>
+
+</div>
+
+
+</div>
+
+<script>
+
+const parametros =
+    new URLSearchParams(window.location.search);
+
+const unidad =
+    parametros.get("unidad");
+
+
+if (!unidad) {
+
+    window.location.href = "algoritmos.html";
+
+}
+
+
+document.getElementById("numeroUnidad")
+    .textContent = unidad;
+
+
+function abrirSemana(numeroSemana) {
+
+    window.location.href =
+        "semana.html?unidad=" +
+        unidad +
+        "&semana=" +
+        numeroSemana;
+
+}
+
+</script>
+
+</body>
+
+</html>

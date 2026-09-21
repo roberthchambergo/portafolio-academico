@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ICONOS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <title>Semana | Algoritmos y Estructuras de Datos</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #080808;
+            color: white;
+            min-height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            padding: 20px 9%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #333;
+        }
+
+        .titulo {
+            font-size: 25px;
+            font-weight: 700;
+            color: #b74b4b;
+        }
+
+        .volver {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border: 2px solid #b74b4b;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .volver:hover {
+            background: #b74b4b;
+            color: white;
+        }
+
+        main {
+            width: 82%;
+            margin: 50px auto;
+        }
+
+        .encabezado {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .encabezado h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .encabezado h1 span {
+            color: #b74b4b;
+        }
+
+        .encabezado p {
+            color: #bbb;
+            font-size: 15px;
+        }
+
+        #archivos {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .archivo-item {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            transition: 0.3s;
+        }
+
+        .archivo-item:hover {
+            border-color: #b74b4b;
+            transform: translateY(-2px);
+        }
+
+        .archivo-nombre {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            min-width: 0;
+        }
+
+        .archivo-nombre i {
+            font-size: 28px;
+            color: #b74b4b;
+            min-width: 35px;
+        }
+
+        .archivo-nombre span {
+            color: white;
+            font-size: 15px;
+            word-break: break-word;
+        }
+
+        .botones {
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .boton {
+            padding: 9px 14px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-size: 13px;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .boton-abrir {
+            background: #222;
+            border: 1px solid #555;
+            color: white;
+        }
+
+        .boton-abrir:hover {
+            background: #333;
+        }
+
+        .boton-descargar {
+            background: #b74b4b;
+            border: 1px solid #b74b4b;
+            color: white;
+        }
+
+        .boton-descargar:hover {
+            background: #963d3d;
+        }
+
+        .sin-archivos {
+            text-align: center;
+            padding: 50px 20px;
+            background: #111;
+            border: 1px dashed #444;
+            border-radius: 10px;
+            color: #999;
+        }
+
+        .sin-archivos i {
+            font-size: 45px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .sin-archivos p {
+            margin-top: 8px;
+        }
+
+        .cargando {
+            text-align: center;
+            padding: 50px;
+            color: #aaa;
+        }
+
+        .cargando i {
+            color: #b74b4b;
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .error {
+            text-align: center;
+            padding: 30px;
+            background: #1a0d0d;
+            border: 1px solid #6b2929;
+            border-radius: 10px;
+            color: #e88;
+        }
+
+        .error i {
+            font-size: 35px;
+            margin-bottom: 10px;
+            color: #b74b4b;
+        }
+
+        @media (max-width: 700px) {
+
+            header {
+                padding: 18px 5%;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            main {
+                width: 90%;
+                margin: 35px auto;
+            }
+
+            .encabezado h1 {
+                font-size: 25px;
+            }
+
+            .archivo-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .botones {
+                width: 100%;
+            }
+
+            .boton {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body data-curso="algoritmos">
+
+    <header>
+
+        <div class="titulo">
+            Algoritmos y Estructuras de Datos
+        </div>
+
+        <!-- BOTÓN VOLVER -->
+        <a id="botonVolver"
+            href="#"
+            class="volver"
+            onclick="volverUnidad(); return false;">
+
+            <i class="fa-solid fa-arrow-left"></i>
+            Volver
+
+        </a>
+
+    </header>
+
+
+    <main>
+
+        <div class="encabezado">
+
+            <h1>
+                Unidad <span id="numeroUnidad"></span>
+                - Semana <span id="numeroSemana"></span>
+            </h1>
+
+            <p>
+                Archivos y materiales correspondientes a esta semana
+            </p>
+
+        </div>
+
+
+        <!-- ARCHIVOS -->
+
+        <div id="archivos">
+
+            <div class="cargando">
+
+                <i class="fa-solid fa-spinner fa-spin"></i>
+
+                <p>Cargando archivos...</p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        /* ==========================================
+           DATOS DE GITHUB
+        ========================================== */
+
+        const GITHUB_USUARIO = "roberthchambergo";
+
+        const GITHUB_REPOSITORIO = "portafolio-academico";
+
+
+        /* ==========================================
+           OBTENER UNIDAD Y SEMANA
+        ========================================== */
+
+        const params = new URLSearchParams(
+            window.location.search
+        );
+
+        const unidad = params.get("unidad");
+
+        const semana = params.get("semana");
+
+
+        /* ==========================================
+           VERIFICAR DATOS
+        ========================================== */
+
+        if (!unidad || !semana) {
+
+            window.location.href = "unidad.html";
+
+        }
+
+
+        /* ==========================================
+           MOSTRAR UNIDAD Y SEMANA
+        ========================================== */
+
+        document.getElementById("numeroUnidad").textContent =
+            unidad;
+
+        document.getElementById("numeroSemana").textContent =
+            semana;
+
+
+        /* ==========================================
+           BOTÓN VOLVER
+        ========================================== */
+
+        function volverUnidad() {
+
+            window.location.href =
+                "unidad.html?unidad=" +
+                encodeURIComponent(unidad);
+
+        }
+
+
+        /* ==========================================
+           OBTENER RUTA DE GITHUB
+        ========================================== */
+
+        function obtenerRuta() {
+
+            return (
+                "archivos/algoritmos/" +
+                "unidad" + unidad + "/" +
+                "semana" + semana
+            );
+
+        }
+
+
+        /* ==========================================
+           OBTENER ICONO SEGÚN EXTENSIÓN
+        ========================================== */
+
+        function obtenerIcono(nombre) {
+
+            const extension =
+                nombre
+                    .split(".")
+                    .pop()
+                    .toLowerCase();
+
+
+            if (extension === "pdf") {
+                return "fa-file-pdf";
+            }
+
+            if (
+                extension === "doc" ||
+                extension === "docx"
+            ) {
+                return "fa-file-word";
+            }
+
+            if (
+                extension === "xls" ||
+                extension === "xlsx"
+            ) {
+                return "fa-file-excel";
+            }
+
+            if (
+                extension === "ppt" ||
+                extension === "pptx"
+            ) {
+                return "fa-file-powerpoint";
+            }
+
+            if (
+                extension === "jpg" ||
+                extension === "jpeg" ||
+                extension === "png" ||
+                extension === "gif" ||
+                extension === "webp"
+            ) {
+                return "fa-file-image";
+            }
+
+            if (
+                extension === "zip" ||
+                extension === "rar" ||
+                extension === "7z"
+            ) {
+                return "fa-file-zipper";
+            }
+
+            if (
+                extension === "html" ||
+                extension === "css" ||
+                extension === "js"
+            ) {
+                return "fa-file-code";
+            }
+
+            if (
+                extension === "mp4" ||
+                extension === "avi" ||
+                extension === "mkv"
+            ) {
+                return "fa-file-video";
+            }
+
+            if (
+                extension === "mp3" ||
+                extension === "wav"
+            ) {
+                return "fa-file-audio";
+            }
+
+            return "fa-file";
+        }
+
+
+        /* ==========================================
+           OBTENER ARCHIVOS DESDE GITHUB
+        ========================================== */
+
+        async function obtenerArchivosGitHub() {
+
+            const ruta = obtenerRuta();
+
+            const url =
+                "https://api.github.com/repos/" +
+                GITHUB_USUARIO + "/" +
+                GITHUB_REPOSITORIO +
+                "/contents/" +
+                ruta;
+
+            try {
+
+                const respuesta =
+                    await fetch(url);
+
+                if (!respuesta.ok) {
+
+                    throw new Error(
+                        "No se pudo acceder a la carpeta"
+                    );
+
+                }
+
+                const archivos =
+                    await respuesta.json();
+
+                mostrarArchivos(archivos);
+
+            } catch (error) {
+
+                console.error(error);
+
+                document.getElementById("archivos").innerHTML = `
+
+                    <div class="error">
+
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+
+                        <p>
+                            No se pudieron cargar los archivos.
+                        </p>
+
+                        <p>
+                            Verifica que la carpeta de esta semana
+                            exista en GitHub.
+                        </p>
+
+                    </div>
+
+                `;
+            }
+        }
+
+
+        /* ==========================================
+           MOSTRAR ARCHIVOS
+        ========================================== */
+
+        function mostrarArchivos(archivos) {
+
+            const contenedor =
+                document.getElementById("archivos");
+
+            contenedor.innerHTML = "";
+
+
+            /* Solo archivos */
+
+            const archivosValidos =
+                archivos.filter(
+                    archivo => archivo.type === "file"
+                );
+
+
+            if (archivosValidos.length === 0) {
+
+                contenedor.innerHTML = `
+
+                    <div class="sin-archivos">
+
+                        <i class="fa-regular fa-folder-open"></i>
+
+                        <h3>
+                            No hay archivos todavía
+                        </h3>
+
+                        <p>
+                            Los materiales de esta semana
+                            aparecerán aquí cuando sean
+                            agregados a GitHub.
+                        </p>
+
+                    </div>
+
+                `;
+
+                return;
+            }
+
+
+            /* Crear cada archivo */
+
+            archivosValidos.forEach(item => {
+
+                const elemento =
+                    document.createElement("div");
+
+                elemento.className =
+                    "archivo-item";
+
+
+                const icono =
+                    obtenerIcono(item.name);
+
+
+                elemento.innerHTML = `
+
+                    <div class="archivo-nombre">
+
+                        <i class="fa-solid ${icono}"></i>
+
+                        <span>
+                            ${item.name}
+                        </span>
+
+                    </div>
+
+
+                    <div class="botones">
+
+                        <a
+                            href="${item.download_url}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="boton boton-abrir"
+                        >
+
+                            <i class="fa-solid fa-eye"></i>
+
+                            Abrir
+
+                        </a>
+
+
+                        <a
+                            href="${item.download_url}"
+                            download
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="boton boton-descargar"
+                        >
+
+                            <i class="fa-solid fa-download"></i>
+
+                            Descargar
+
+                        </a>
+
+                    </div>
+
+                `;
+
+
+                contenedor.appendChild(elemento);
+
+            });
+
+        }
+
+
+        /* ==========================================
+           CARGAR ARCHIVOS
+        ========================================== */
+
+        obtenerArchivosGitHub();
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<title>Algoritmos y Estructuras de Datos | Roberth</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        background: #080808;
+        color: white;
+    }
+
+    header {
+        width: 100%;
+        padding: 20px 8%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #333;
+    }
+
+    .titulo {
+        font-size: 28px;
+        color: #b74b4b;
+        font-weight: bold;
+    }
+
+    .volver {
+        text-decoration: none;
+        color: white;
+        background: #b74b4b;
+        padding: 10px 20px;
+        border-radius: 20px;
+        transition: .3s;
+    }
+
+    .volver:hover {
+        background: white;
+        color: #b74b4b;
+    }
+
+    .contenido {
+        width: 90%;
+        max-width: 1200px;
+        margin: 50px auto;
+    }
+
+    .titulo-principal {
+        text-align: center;
+        font-size: 45px;
+        margin-bottom: 15px;
+    }
+
+    .titulo-principal span {
+        color: #b74b4b;
+    }
+
+    .descripcion {
+        text-align: center;
+        color: #ccc;
+        margin-bottom: 50px;
+    }
+
+    .unidades {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+    }
+
+    .unidad {
+        background: #111;
+        border: 1px solid #333;
+        border-radius: 20px;
+        padding: 40px 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: .3s;
+    }
+
+    .unidad:hover {
+        transform: translateY(-8px);
+        border-color: #b74b4b;
+        box-shadow: 0 0 20px rgba(183, 75, 75, .3);
+    }
+
+    .unidad i {
+        font-size: 60px;
+        color: #b74b4b;
+        margin-bottom: 20px;
+    }
+
+    .unidad h2 {
+        margin-bottom: 10px;
+    }
+
+    .unidad p {
+        color: #aaa;
+        font-size: 14px;
+    }
+
+    @media(max-width: 900px) {
+        .unidades {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media(max-width: 600px) {
+        .unidades {
+            grid-template-columns: 1fr;
+        }
+
+        .titulo-principal {
+            font-size: 35px;
+        }
+
+        .titulo {
+            font-size: 20px;
+        }
+    }
+</style>
+
+
+</head>
+
+<body data-curso="algoritmos">
+
+<header>
+
+
+<div class="titulo">
+    Algoritmos y Estructuras de Datos
+</div>
+
+<a href="index.html" class="volver">
+    <i class="fa-solid fa-arrow-left"></i>
+    Volver
+</a>
+
+
+</header>
+
+<div class="contenido">
+
+
+<h1 class="titulo-principal">
+    Algoritmos y <span>Estructuras de Datos</span>
+</h1>
+
+<p class="descripcion">
+    Selecciona una unidad para ver sus semanas y materiales.
+</p>
+
+
+<div class="unidades">
+
+    <!-- UNIDAD 1 -->
+
+    <div class="unidad" onclick="abrirUnidad(1)">
+
+        <i class="fa-solid fa-folder"></i>
+
+        <h2>Unidad 1</h2>
+
+        <p>Semanas 1 - 4</p>
+
+    </div>
+
+
+    <!-- UNIDAD 2 -->
+
+    <div class="unidad" onclick="abrirUnidad(2)">
+
+        <i class="fa-solid fa-folder"></i>
+
+        <h2>Unidad 2</h2>
+
+        <p>Semanas 1 - 4</p>
+
+    </div>
+
+
+    <!-- UNIDAD 3 -->
+
+    <div class="unidad" onclick="abrirUnidad(3)">
+
+        <i class="fa-solid fa-folder"></i>
+
+        <h2>Unidad 3</h2>
+
+        <p>Semanas 1 - 4</p>
+
+    </div>
+
+
+    <!-- UNIDAD 4 -->
+
+    <div class="unidad" onclick="abrirUnidad(4)">
+
+        <i class="fa-solid fa-folder"></i>
+
+        <h2>Unidad 4</h2>
+
+        <p>Semanas 1 - 4</p>
+
+    </div>
+
+</div>
+
+
+</div>
+
+<script>
+
+function abrirUnidad(numero) {
+
+    window.location.href =
+        "unidad.html?unidad=" + numero;
+
+}
+
+</script>
+
+</body>
+</html>

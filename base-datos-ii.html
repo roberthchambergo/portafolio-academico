@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base de Datos II | Roberth</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #080808;
+            color: white;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #111;
+            padding: 20px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #333;
+        }
+
+        header h1 {
+            font-size: 24px;
+            color: white;
+        }
+
+        .volver {
+            text-decoration: none;
+            color: white;
+            background: #b74b4b;
+            padding: 10px 18px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .volver:hover {
+            background: #933b3b;
+        }
+
+        .contenedor {
+            width: 90%;
+            max-width: 1100px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        .contenedor h2 {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .contenedor p {
+            color: #bbb;
+            margin-bottom: 40px;
+        }
+
+        .unidades {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .unidad {
+            background: #151515;
+            border: 1px solid #333;
+            border-radius: 15px;
+            padding: 40px 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .unidad:hover {
+            transform: translateY(-7px);
+            border-color: #b74b4b;
+            box-shadow: 0 0 20px rgba(183, 75, 75, 0.25);
+        }
+
+        .unidad i {
+            font-size: 45px;
+            color: #b74b4b;
+            margin-bottom: 20px;
+        }
+
+        .unidad h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .unidad p {
+            margin: 0;
+            color: #aaa;
+        }
+
+        @media (max-width: 700px) {
+            .unidades {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Base de Datos II</h1>
+
+        <a href="index.html" class="volver">
+            <i class="fa-solid fa-arrow-left"></i> Volver
+        </a>
+    </header>
+
+    <main class="contenedor">
+
+        <h2>Base de Datos II</h2>
+
+        <p>
+            Selecciona una unidad para ver sus semanas y materiales.
+        </p>
+
+        <div class="unidades">
+
+            <div class="unidad" onclick="abrirUnidad(1)">
+                <i class="fa-solid fa-folder"></i>
+                <h3>Unidad 1</h3>
+                <p>Semanas 1 - 4</p>
+            </div>
+
+            <div class="unidad" onclick="abrirUnidad(2)">
+                <i class="fa-solid fa-folder"></i>
+                <h3>Unidad 2</h3>
+                <p>Semanas 1 - 4</p>
+            </div>
+
+            <div class="unidad" onclick="abrirUnidad(3)">
+                <i class="fa-solid fa-folder"></i>
+                <h3>Unidad 3</h3>
+                <p>Semanas 1 - 4</p>
+            </div>
+
+            <div class="unidad" onclick="abrirUnidad(4)">
+                <i class="fa-solid fa-folder"></i>
+                <h3>Unidad 4</h3>
+                <p>Semanas 1 - 4</p>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script>
+        function abrirUnidad(numero) {
+            window.location.href = "unidad-base-datos.html?unidad=" + numero;
+        }
+    </script>
+
+</body>
+</html>
+```

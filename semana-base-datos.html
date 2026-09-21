@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <title>Semana | Base de Datos II</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #080808;
+            color: white;
+        }
+
+        header {
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #333;
+            gap: 20px;
+        }
+
+        .titulo {
+            font-size: 25px;
+            color: #b74b4b;
+            font-weight: bold;
+        }
+
+        .volver {
+            text-decoration: none;
+            color: white;
+            background: #b74b4b;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+
+        .volver:hover {
+            background: white;
+            color: #b74b4b;
+        }
+
+        .contenido {
+            width: 90%;
+            max-width: 1000px;
+            margin: 50px auto;
+        }
+
+        .titulo-principal {
+            text-align: center;
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .titulo-principal span {
+            color: #b74b4b;
+        }
+
+        .descripcion {
+            text-align: center;
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+
+        .informacion {
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 40px;
+        }
+
+        .archivos {
+            margin-top: 20px;
+        }
+
+        .archivo-item {
+            background: #111;
+            border: 1px solid #333;
+            padding: 18px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+
+        .archivo-nombre {
+            margin-bottom: 15px;
+            word-break: break-word;
+            font-size: 17px;
+        }
+
+        .archivo-nombre i {
+            color: #b74b4b;
+            margin-right: 8px;
+        }
+
+        .botones {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .boton {
+            border: none;
+            padding: 8px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .boton-abrir {
+            background: #b74b4b;
+            color: white;
+        }
+
+        .boton-abrir:hover {
+            background: white;
+            color: #b74b4b;
+        }
+
+        .boton-descargar {
+            background: #333;
+            color: white;
+        }
+
+        .boton-descargar:hover {
+            background: #b74b4b;
+        }
+
+        .sin-archivos {
+            text-align: center;
+            color: #777;
+            padding: 30px;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 15px;
+        }
+
+        .cargando {
+            text-align: center;
+            color: #b74b4b;
+            padding: 30px;
+        }
+
+        .error {
+            text-align: center;
+            color: #b74b4b;
+            padding: 30px;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 15px;
+        }
+
+        @media(max-width: 600px) {
+
+            header {
+                padding: 20px 5%;
+            }
+
+            .titulo-principal {
+                font-size: 32px;
+            }
+
+            .titulo {
+                font-size: 18px;
+            }
+
+            .contenido {
+                width: 92%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body data-curso="base-datos-ii">
+
+
+<header>
+
+    <div class="titulo">
+        Base de Datos II
+    </div>
+
+
+    <a id="botonVolver"
+        href="#"
+        class="volver">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        Volver
+
+    </a>
+
+</header>
+
+
+
+<div class="contenido">
+
+
+    <h1 class="titulo-principal">
+
+        Unidad
+        <span id="numeroUnidad"></span>
+
+        -
+
+        Semana
+        <span id="numeroSemana"></span>
+
+    </h1>
+
+
+    <p class="descripcion">
+
+        Materiales y archivos correspondientes a esta semana.
+
+    </p>
+
+
+    <p class="informacion">
+
+        Los archivos publicados aquí se encuentran almacenados en GitHub.
+
+    </p>
+
+
+
+    <div id="archivos"
+        class="archivos">
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+
+/* =====================================================
+   CONFIGURACIÓN DE TU GITHUB
+===================================================== */
+
+const GITHUB_USUARIO =
+    "roberthchambergo";
+
+const GITHUB_REPOSITORIO =
+    "portafolio-academico";
+
+
+/* =====================================================
+   OBTENER UNIDAD Y SEMANA
+===================================================== */
+
+const parametros =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const unidad =
+    parametros.get("unidad");
+
+
+const semana =
+    parametros.get("semana");
+
+
+/* =====================================================
+   COMPROBAR UNIDAD Y SEMANA
+===================================================== */
+
+if (!unidad || !semana) {
+
+    window.location.href =
+        "unidad-base-datos.html";
+
+}
+
+
+/* =====================================================
+   MOSTRAR NÚMEROS
+===================================================== */
+
+document.getElementById(
+    "numeroUnidad"
+).textContent = unidad;
+
+
+document.getElementById(
+    "numeroSemana"
+).textContent = semana;
+
+
+
+/* =====================================================
+   BOTÓN VOLVER
+===================================================== */
+
+document.getElementById(
+    "botonVolver"
+).href =
+    "unidad-base-datos.html?unidad=" +
+    encodeURIComponent(unidad);
+
+
+
+/* =====================================================
+   CREAR RUTA DE LA SEMANA
+===================================================== */
+
+function obtenerRuta() {
+
+    return (
+        "archivos/base-datos-ii/" +
+        "unidad" +
+        unidad +
+        "/" +
+        "semana" +
+        semana
+    );
+
+}
+
+
+
+/* =====================================================
+   OBTENER ARCHIVOS DESDE GITHUB
+===================================================== */
+
+async function obtenerArchivosGitHub() {
+
+    const ruta =
+        obtenerRuta();
+
+
+    const url =
+        "https://api.github.com/repos/" +
+        GITHUB_USUARIO +
+        "/" +
+        GITHUB_REPOSITORIO +
+        "/contents/" +
+        ruta;
+
+
+    const respuesta =
+        await fetch(url);
+
+
+    if (!respuesta.ok) {
+
+        throw new Error(
+            "No se encontró la carpeta de esta semana."
+        );
+
+    }
+
+
+    const datos =
+        await respuesta.json();
+
+
+    if (!Array.isArray(datos)) {
+
+        return [];
+
+    }
+
+
+    return datos.filter(
+        function(item) {
+
+            return item.type === "file";
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   OBTENER ICONO DEL ARCHIVO
+===================================================== */
+
+function obtenerIcono(nombre) {
+
+    const extension =
+        nombre
+            .split(".")
+            .pop()
+            .toLowerCase();
+
+
+    if (extension === "pdf") {
+
+        return "fa-file-pdf";
+
+    }
+
+
+    if (
+        extension === "doc" ||
+        extension === "docx"
+    ) {
+
+        return "fa-file-word";
+
+    }
+
+
+    if (
+        extension === "xls" ||
+        extension === "xlsx"
+    ) {
+
+        return "fa-file-excel";
+
+    }
+
+
+    if (
+        extension === "ppt" ||
+        extension === "pptx"
+    ) {
+
+        return "fa-file-powerpoint";
+
+    }
+
+
+    if (
+        extension === "jpg" ||
+        extension === "jpeg" ||
+        extension === "png" ||
+        extension === "gif" ||
+        extension === "webp"
+    ) {
+
+        return "fa-file-image";
+
+    }
+
+
+    if (
+        extension === "zip" ||
+        extension === "rar" ||
+        extension === "7z"
+    ) {
+
+        return "fa-file-zipper";
+
+    }
+
+
+    if (
+        extension === "html" ||
+        extension === "css" ||
+        extension === "js"
+    ) {
+
+        return "fa-file-code";
+
+    }
+
+
+    if (
+        extension === "mp4" ||
+        extension === "avi" ||
+        extension === "mkv"
+    ) {
+
+        return "fa-file-video";
+
+    }
+
+
+    if (
+        extension === "mp3" ||
+        extension === "wav"
+    ) {
+
+        return "fa-file-audio";
+
+    }
+
+
+    return "fa-file";
+
+}
+
+
+
+/* =====================================================
+   MOSTRAR ARCHIVOS
+===================================================== */
+
+async function mostrarArchivos() {
+
+    const contenedor =
+        document.getElementById(
+            "archivos"
+        );
+
+
+    contenedor.innerHTML =
+        '<div class="cargando">' +
+        '<i class="fa-solid fa-spinner fa-spin"></i> ' +
+        'Cargando archivos...' +
+        '</div>';
+
+
+    try {
+
+        const archivos =
+            await obtenerArchivosGitHub();
+
+
+        contenedor.innerHTML = "";
+
+
+        if (archivos.length === 0) {
+
+            contenedor.innerHTML =
+                '<div class="sin-archivos">' +
+
+                '<i class="fa-solid fa-folder-open"></i>' +
+
+                '<br><br>' +
+
+                'No hay archivos publicados en esta semana.' +
+
+                '</div>';
+
+            return;
+
+        }
+
+
+
+        archivos.forEach(
+            function(item) {
+
+                const caja =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                caja.className =
+                    "archivo-item";
+
+
+
+                const nombre =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                nombre.className =
+                    "archivo-nombre";
+
+
+                const icono =
+                    document.createElement(
+                        "i"
+                    );
+
+
+                icono.className =
+                    "fa-solid " +
+                    obtenerIcono(
+                        item.name
+                    );
+
+
+                const texto =
+                    document.createElement(
+                        "span"
+                    );
+
+
+                texto.textContent =
+                    item.name;
+
+
+                nombre.appendChild(
+                    icono
+                );
+
+
+                nombre.appendChild(
+                    texto
+                );
+
+
+
+                const botones =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                botones.className =
+                    "botones";
+
+
+
+                const abrir =
+                    document.createElement(
+                        "a"
+                    );
+
+
+                abrir.className =
+                    "boton boton-abrir";
+
+
+                abrir.innerHTML =
+                    '<i class="fa-solid fa-eye"></i> Abrir';
+
+
+                abrir.href =
+                    item.download_url;
+
+
+                abrir.target =
+                    "_blank";
+
+
+                abrir.rel =
+                    "noopener noreferrer";
+
+
+
+                const descargar =
+                    document.createElement(
+                        "a"
+                    );
+
+
+                descargar.className =
+                    "boton boton-descargar";
+
+
+                descargar.innerHTML =
+                    '<i class="fa-solid fa-download"></i> Descargar';
+
+
+                descargar.href =
+                    item.download_url;
+
+
+                descargar.setAttribute(
+                    "download",
+                    item.name
+                );
+
+
+                descargar.target =
+                    "_blank";
+
+
+                descargar.rel =
+                    "noopener noreferrer";
+
+
+
+                botones.appendChild(
+                    abrir
+                );
+
+
+                botones.appendChild(
+                    descargar
+                );
+
+
+                caja.appendChild(
+                    nombre
+                );
+
+
+                caja.appendChild(
+                    botones
+                );
+
+
+                contenedor.appendChild(
+                    caja
+                );
+
+            }
+        );
+
+
+    } catch (error) {
+
+
+        console.error(
+            "Error al cargar archivos:",
+            error
+        );
+
+
+        contenedor.innerHTML =
+            '<div class="error">' +
+
+            '<i class="fa-solid fa-triangle-exclamation"></i>' +
+
+            '<br><br>' +
+
+            'No se pudieron cargar los archivos.' +
+
+            '<br><br>' +
+
+            'Verifica que la carpeta de esta semana exista en GitHub.' +
+
+            '</div>';
+
+    }
+
+}
+
+
+
+/* =====================================================
+   INICIAR
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        mostrarArchivos();
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
